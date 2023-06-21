@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Grist Update Buttons</title>
+
+    <!-- Uses Vue.js and the Grist Plugin API -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+
+    <script src="./update-buttons.js"></script>
+    <link rel="stylesheet" href="./actionbutton.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="status" v-if="status">
+            <template v-if="status === 'waiting'">
+                <p>Waiting for data...</p>
+            </template>
+            <template v-else>
+                {{ status }}
+            </template>
+        </div>
+        <template v-else>
+            <div class="description">{{ input.description }}</div>
+            <button class="button" v-on:click="applyActions">{{ input.button }}</button>
+            <div class="result" v-if="result">{{ input.result }}</div>
+        </template>
+    </div>
+</body>
+
+</html>

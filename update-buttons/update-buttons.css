@@ -21,6 +21,7 @@ body {
 
 #app {
     margin: 32px 16px;
+    background: transparent;
 }
 
 .description,
@@ -36,9 +37,7 @@ body {
 .button {
     border: none;
     border-radius: 6px;
-    background-color: #1486ff;
     padding: 8px 16px;
-    color: white;
     font-size: inherit;
     font-family: inherit;
     font-weight: inherit;

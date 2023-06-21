@@ -8,26 +8,33 @@
     <!-- Uses Vue.js and the Grist Plugin API -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <script src="./update-buttons.js"></script>
-    <link rel="stylesheet" href="./actionbutton.css">
+    <script src="update-buttons.js?ver=1"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="update-buttons.css?ver=1">
 </head>
 
 <body>
     <div id="app">
-        <div class="status" v-if="status">
-            <template v-if="status === 'waiting'">
-                <p>Waiting for data...</p>
-            </template>
-            <template v-else>
-                {{ status }}
-            </template>
+        <div v-if="errMsg" class="status">
+            <p>{{ errMsg }}</p>
         </div>
-        <template v-else>
-            <div class="description">{{ input.description }}</div>
-            <button class="button" v-on:click="applyActions">{{ input.button }}</button>
-            <div class="result" v-if="result">{{ input.result }}</div>
-        </template>
+        <div class="buttons flex">
+            <button v-for="(choice, i) in choices" :key="i"
+                :disabled="isLoading" 
+                :style="`color:${choice.text_color}; background:${choice.main_color}`"
+                :class="{
+                    'ring-offset-2 ring': currentValue === choice.value || currentValue === choice.label,
+                    'animate-pulse': isLoading && selectedValue === choice.value
+                }"
+                class="button" 
+                @click="doAction(i)" 
+            >
+                {{ choice.label }}
+            </button>
+        </div>
+        <div v-if="isLoading" class="result">Loading...</div>
     </div>
 </body>
 

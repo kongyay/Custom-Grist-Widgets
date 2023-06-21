@@ -13,7 +13,7 @@ function setup() {
     const currentValue = ref();
     
     async function doAction(index) {
-        if(!rowId.value || !colId.value || !tableId.value) {
+        if(!tableId.value || !rowId.value || !colId.value) {
             errMsg.value = "Incomplete Ids"
             return;
         }
@@ -21,10 +21,12 @@ function setup() {
         try {
             const choice = choices.value[index]
             selectedValue.value = choice.value;
-            await grist.docApi.applyUserActions([ ['UpdateRecord', tableId.value, rowId.value, {
+            const res = await grist.docApi.applyUserActions([ ['UpdateRecord', tableId.value, rowId.value, {
                 [colId.value]: choice.value
               }]])
+            console.log('Updated', tableId.value, rowId.value, colId.value, res);
         } catch (e) {
+            console.error(e);
             errMsg.value = `Please grant full access for writing. (${e})`;
         }
         isLoading.value = false;

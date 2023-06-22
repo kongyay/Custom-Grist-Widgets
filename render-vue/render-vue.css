@@ -1,0 +1,17 @@
+body {
+    background: #505065;
+}
+
+html, body, textarea {
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+#error {
+    display: none;
+    background: red;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}

@@ -20,15 +20,15 @@
         <div v-if="errMsg" class="status">
             <p>{{ errMsg }}</p>
         </div>
-        <div class="buttons flex">
+        <div class="buttons flex flex-wrap justify-center gap-1">
             <button v-for="(choice, i) in choices" :key="i"
                 :disabled="isLoading" 
                 :style="`color:${choice.text_color}; background:${choice.main_color}`"
+                class="button"
                 :class="{
                     'ring-offset-2 ring': currentValue === choice.value || currentValue === choice.label,
                     'animate-pulse': isLoading && selectedValue === choice.value
                 }"
-                class="button" 
                 @click="doAction(i)" 
             >
                 {{ choice.label }}

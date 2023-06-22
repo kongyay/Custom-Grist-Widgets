@@ -20,14 +20,7 @@ body {
 
 
 #app {
-    margin: 32px 16px;
-    background: transparent;
-}
-
-.description,
-.result,
-.button {
-    margin: 16px 0;
+    background: #505065;
 }
 
 .message {

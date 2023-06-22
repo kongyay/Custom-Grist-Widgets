@@ -2,6 +2,7 @@ body {
     font-family: Sans-Serif;
     padding: 0;
     margin: 0;
+    background: #505065;
 }
 
 *,
@@ -16,11 +17,6 @@ body {
     padding: 8px;
     margin-top: 40px;
     color: blue;
-}
-
-
-#app {
-    background: #505065;
 }
 
 .message {
